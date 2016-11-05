@@ -38,7 +38,8 @@ public class HRRN {
                     }
                 }
                 
-                
+                for(k=0;k<list.size();k++)
+                    list.get(k).ResRatio();
                 
                 Collections.sort((List)list,new Comparator<Process>() {
                     @Override

@@ -24,8 +24,13 @@ public class SJF {
     public static void main(String[] args) {
         // TODO code application logic here
         
+        
+        
         Scanner in = new Scanner(System.in);
-        int n, i, j, k, e, a;
+        int n, i, j, k,simpleRun=0, e, a;
+        for(i=0;i<10;i++){
+            System.out.print(i+"--");
+        }
         System.out.print("Enter no of Processes:");
         n = in.nextInt();
         Process p[] = new Process[n];
@@ -39,7 +44,7 @@ public class SJF {
             proc.add(p[i]);
         }
         ArrayList<Process> list = new ArrayList();Process tempRun;
-        p[0].runProcess();
+        p[simpleRun++].runProcess();
         
         for (i = 0; i < (n - 1); i++) {
             if (flag == 0) {
@@ -48,7 +53,13 @@ public class SJF {
                         list.add(proc.get(j));
                     }
                 }
-                Collections.sort((List)list,new Comparator<Process>() {
+                
+                if(list.isEmpty()){
+                    list.add(proc.get(simpleRun));
+                    list.remove(proc.get(simpleRun++));
+                }
+                else{
+                    Collections.sort((List)list,new Comparator<Process>() {
                     @Override
                     public int compare(Process o1, Process o2) {
                         if(o1.ex==o2.ex)
@@ -61,8 +72,10 @@ public class SJF {
                 tempRun.runProcess();
                 proc.remove(tempRun);
                 list.remove(tempRun);
+                }
+                
             }
-            flag = (list.size() == (n - 2)) ? 1 : 0;
+            flag = (list.size() == (n - simpleRun-1)) ? 1 : 0;
             int tempSize=list.size();
             if(flag==1){
                 do{
@@ -76,7 +89,9 @@ public class SJF {
             }
             
         }
-
+        
+        
+        
         System.out.println("-------------------------------------------");
         System.out.println("Pro  |  T.T  |  wait Time  |  Utilization Time");
         System.out.println("-------------------------------------------");

@@ -9,6 +9,10 @@ public class Process {
         this.id=id;
         ex=e;
         ar=a;
+//        res_ratio=(HRRN.last_finish+ex)/ex;
+    }
+    
+    void ResRatio(){
         res_ratio=(HRRN.last_finish+ex)/ex;
     }
     
